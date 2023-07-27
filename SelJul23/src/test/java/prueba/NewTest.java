@@ -12,7 +12,6 @@ public class NewTest {
 		String exePath = "/Users/macbookpro/eclipse-workspace/SelJul23/driver/chromedriver";
 		//// System.setProperty("webdriver.chrome.driver", exePath);
 		WebDriver driver = new ChromeDriver();
-		driver.get("https://google.com");
-		
+		driver.get("https://google.com.mx");		
 	}
 }
