@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import commonClasses.DriverSetup;
 import commonClasses.GlobalVariables;
+import commonClasses.WrapClass;
 import navigationsPages.InventoryPage;
 import navigationsPages.SauceLoginPage;
 
@@ -32,7 +33,9 @@ public class TC_03_Inventory {
 	  
 	  @AfterTest
 	  public void closeDriver() {
+		  WrapClass.takeScreenshot(driver, "TC_03");
 		  driver.quit();
 	  }
+	  
 }
 

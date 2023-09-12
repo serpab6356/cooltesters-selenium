@@ -1,8 +1,8 @@
 package loginTestCases;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import commonClasses.DriverSetup;
@@ -10,9 +10,10 @@ import commonClasses.GlobalVariables;
 import commonClasses.WrapClass;
 import navigationsPages.SauceLoginPage;
 
-public class TC_02_ErrorLock {
-	
-  //Declarar e iniciar el WebDriver
+public class TC_05_LoginExcel {
+ 
+	  
+	//Declarar e iniciar el WebDriver
 	WebDriver driver = DriverSetup.setupDriver();
 	
 	//PageObjects
@@ -23,16 +24,19 @@ public class TC_02_ErrorLock {
 		driver.get(GlobalVariables.HOME_PAGE);
 	}
 	
-  @Test
-  public void TC_02() {
-	  loginPage.loginSauce(GlobalVariables.USER_NAME_LOCK, GlobalVariables.PASSWORD);
-	  Assert.assertTrue(loginPage.validateLockError());
-  }
-  
-  @AfterTest
-  public void closeDriver() {
-	  WrapClass.takeScreenshot(driver, "TC_02");
-	  driver.quit();
-  }
-  
+	@Test
+	public void TC_05() {
+		String user = WrapClass.getCellData("TC_05", 1, 0);
+		String password = WrapClass.getCellData("TC_05",1, 1);
+		
+		loginPage.loginSauce(user, password);
+	}
+	
+	
+	@AfterTest
+	public void closeDriver() {
+		WrapClass.takeScreenshot(driver, "TC_05");
+		driver.quit();
+		
+	}
 }

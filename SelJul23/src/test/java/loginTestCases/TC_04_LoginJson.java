@@ -1,8 +1,8 @@
 package loginTestCases;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import commonClasses.DriverSetup;
@@ -10,9 +10,9 @@ import commonClasses.GlobalVariables;
 import commonClasses.WrapClass;
 import navigationsPages.SauceLoginPage;
 
-public class TC_02_ErrorLock {
+public class TC_04_LoginJson {
 	
-  //Declarar e iniciar el WebDriver
+	//Declarar e iniciar el WebDriver
 	WebDriver driver = DriverSetup.setupDriver();
 	
 	//PageObjects
@@ -22,17 +22,21 @@ public class TC_02_ErrorLock {
 	public void startWebDriver() {
 		driver.get(GlobalVariables.HOME_PAGE);
 	}
+  
 	
-  @Test
-  public void TC_02() {
-	  loginPage.loginSauce(GlobalVariables.USER_NAME_LOCK, GlobalVariables.PASSWORD);
-	  Assert.assertTrue(loginPage.validateLockError());
+	@Test
+  public void TC_04() {
+		String user = WrapClass.getJsonValue("TC_04", "username");
+		String password = WrapClass.getJsonValue("TC_04", "password");
+		
+		loginPage.loginSauce(user, password);
   }
-  
-  @AfterTest
-  public void closeDriver() {
-	  WrapClass.takeScreenshot(driver, "TC_02");
-	  driver.quit();
-  }
-  
+	
+	
+	@AfterTest
+	public void closeDriver() {
+		WrapClass.takeScreenshot(driver, "TC_04");
+		driver.quit();
+		
+	}
 }
